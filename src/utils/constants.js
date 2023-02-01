@@ -59,3 +59,8 @@ export const filters = [
 //   { react_security: "https://github.com/facebook/react/security" },
 //   { react_insights: "https://github.com/facebook/react/pulse" },
 // ];
+
+export const footerTitles = [
+  ["Terms", "Privacy", "Security", "Status", "Docs"],
+  ["Contact GitHub", "Pricing", "API", "Training", "Blog", "About"],
+];

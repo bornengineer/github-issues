@@ -1,4 +1,5 @@
 import { Container } from "@mui/material";
+import Footer from "./components/Footer";
 import Header from "./components/Header";
 import IssuesContainer from "./components/IssuesContainer";
 
@@ -17,6 +18,7 @@ function App() {
       <Header />
       <IssuesContainer />
       <div style={{ height: "18vh" }}></div>
+      <Footer />
     </Container>
   );
 }
