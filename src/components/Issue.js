@@ -13,6 +13,7 @@ const Issue = ({
     created_at,
     user: { login },
   },
+  innerRef,
 }) => {
   const time = moment(created_at).fromNow();
   // console.log("time :>> ", time);
@@ -47,7 +48,7 @@ const Issue = ({
               return <Label key={label.id} label={label} />;
             })}
           </Box>
-          <span>
+          <span ref={innerRef}>
             #{number} opened {time} by {login}
           </span>
         </Stack>

@@ -21,7 +21,10 @@ const IssuesHeader = () => {
       }}
     >
       <Box className="box-center" gap={2}>
-        <Box className="box-center" sx={{ fontWeight: "bold", ml: "20px" }}>
+        <Box
+          className="box-center"
+          sx={{ fontWeight: "bold", ml: "20px", color: "#4d4c4c" }}
+        >
           <ModeStandbyIcon></ModeStandbyIcon> &nbsp;625 Open
         </Box>
         <Box

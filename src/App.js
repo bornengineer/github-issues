@@ -16,7 +16,7 @@ function App() {
     >
       <Header />
       <IssuesContainer />
-      <div style={{ height: "10vh" }}></div>
+      <div style={{ height: "18vh" }}></div>
     </Container>
   );
 }

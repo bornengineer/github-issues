@@ -1,32 +1,79 @@
 import { Container } from "@mui/material";
 import Issue from "./Issue";
 import IssuesHeader from "./IssuesHeader";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { fetchFromAPI } from "../utils/fetchFromAPI";
+import CircularProgress from "@mui/material/CircularProgress";
+import { Box } from "@mui/system";
 
 const IssuesContainer = () => {
   const [issues, setIssues] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [hasMore, setHasMore] = useState(true);
+  const [page, setPage] = useState(1);
+  const observer = useRef();
+  let query = `?per_page=30&page=${page}`;
+
   useEffect(() => {
-    fetchFromAPI().then((data) => {
-      console.log("data :>> ", data);
-      setIssues(data);
+    fetchFromAPI(query).then((res) => {
+      // console.log("data :>> ", data);
+      if (!issues.length) setIssues(res);
+      else {
+        setIssues((prevIssues) => {
+          return [...prevIssues, ...res];
+        });
+      }
+      setHasMore(res.length > 0);
+      setLoading(false);
     });
-  }, []);
+  }, [page]);
+
+  const lastIssue = useCallback(
+    (node) => {
+      console.log(node, hasMore);
+      if (loading) return;
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && hasMore) {
+          console.log("visible");
+          setPage((prevPage) => prevPage + 1);
+          setLoading(true);
+        }
+      });
+      if (node) observer.current.observe(node);
+    },
+    [loading, hasMore]
+  );
+
   return (
-    <Container
-      sx={{
-        border: "1px solid #d0cece",
-        marginTop: "40px",
-        borderRadius: "6px",
-        paddingLeft: "0 !important",
-        paddingRight: "0 !important",
-      }}
-    >
-      <IssuesHeader />
-      {issues.map((issue) => {
-        return <Issue key={issue.number} issue={issue} />;
-      })}
-    </Container>
+    <>
+      <Container
+        sx={{
+          border: "1px solid #d0cece",
+          marginTop: "40px",
+          borderRadius: "6px",
+          paddingLeft: "0 !important",
+          paddingRight: "0 !important",
+        }}
+      >
+        <IssuesHeader />
+        {issues.map((issue, index) => {
+          if (issues.length === index + 1) {
+            return (
+              <Issue innerRef={lastIssue} key={issue.number} issue={issue} />
+            );
+          } else {
+            return <Issue key={issue.number} issue={issue} />;
+          }
+        })}
+      </Container>
+      <Box
+        className="box-center"
+        style={{ zIndex: "1000", marginLeft: "auto", marginRight: "auto" }}
+      >
+        {loading && <CircularProgress sx={{ marginTop: "40px" }} />}
+      </Box>
+    </>
   );
 };
 

@@ -5,6 +5,7 @@ const Label = ({ label }) => {
     "React Core Team",
     "Status: New",
     "dependencies",
+    "Component: Fast Refresh",
   ];
   let textColor = "black";
   whiteTexts.forEach((text) => {

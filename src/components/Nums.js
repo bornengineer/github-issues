@@ -12,6 +12,7 @@ const Nums = ({ num }) => {
         justifyContent: "center",
         alignItems: "center",
         color: "black",
+        fontWeight: "normal",
       }}
     >
       {num}

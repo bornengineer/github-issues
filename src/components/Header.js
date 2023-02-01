@@ -40,7 +40,7 @@ const Header = () => {
           }}
         >
           <CollectionsBookmarkIcon sx={{ fontSize: "20px" }} />
-          <Typography variant="h6" sx={{ color: "#2d8ffb" }}>
+          <Typography variant="h6" sx={{ color: "#0969da" }}>
             facebook / <strong>react</strong>
           </Typography>
           <div
