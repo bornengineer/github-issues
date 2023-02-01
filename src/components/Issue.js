@@ -21,6 +21,7 @@ const Issue = ({
     <Stack
       direction="row"
       gap={2}
+      className="issue-cont"
       sx={{
         display: "flex",
         alignItems: "center",
@@ -30,6 +31,7 @@ const Issue = ({
         borderLeft: "none",
         borderRight: "none",
         padding: "10px",
+        fontSize: { sm: "1rem", xs: ".8rem" },
       }}
     >
       <Stack direction="row" gap={2}>
@@ -43,7 +45,7 @@ const Issue = ({
               marginBottom: "4px",
             }}
           >
-            {title}
+            <span className="issue-title">{title}</span>
             {labels.map((label) => {
               return <Label key={label.id} label={label} />;
             })}
@@ -53,9 +55,7 @@ const Issue = ({
           </span>
         </Stack>
       </Stack>
-      <Box>
-        <Comment comments={comments} />
-      </Box>
+      <Box>{comments > 0 && <Comment comments={comments} />}</Box>
     </Stack>
   );
 };

@@ -48,12 +48,14 @@ const IssuesContainer = () => {
   return (
     <>
       <Container
+        maxWidth="xxl"
         sx={{
           border: "1px solid #d0cece",
-          marginTop: "40px",
+          marginTop: { sm: "40px", xs: "20px" },
           borderRadius: "6px",
           paddingLeft: "0 !important",
           paddingRight: "0 !important",
+          width: { sm: "82vw !important", xs: "94vw !important" },
         }}
       >
         <IssuesHeader />

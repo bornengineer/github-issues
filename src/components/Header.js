@@ -18,6 +18,7 @@ const Header = () => {
         background: "#f6f8fa",
         padding: "0px",
         color: "gray",
+        borderBottom: "1px solid lightgray",
       }}
     >
       <Stack
@@ -36,12 +37,29 @@ const Header = () => {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            width: "16vw",
+            width: "235px",
+            marginLeft: {
+              xs: "30px",
+              sm: "30px !important",
+              md: "0px !important",
+            },
           }}
         >
           <CollectionsBookmarkIcon sx={{ fontSize: "20px" }} />
-          <Typography variant="h6" sx={{ color: "#0969da" }}>
-            facebook / <strong>react</strong>
+          <Typography
+            variant="h6"
+            className="heading_link"
+            sx={{ color: "#0969da", cursor: "pointer" }}
+          >
+            facebook
+          </Typography>
+          /
+          <Typography
+            variant="h6"
+            className="heading_link"
+            sx={{ color: "#0969da", cursor: "pointer" }}
+          >
+            <strong>react</strong>
           </Typography>
           <div
             className="box-center"
@@ -56,19 +74,39 @@ const Header = () => {
         </Box>
         <Box
           sx={{
-            display: "flex",
+            display: { md: "flex", xs: "none" },
             justifyContent: "center",
             alignItems: "center",
             fontSize: "14px",
+            color: "black",
+            cursor: "pointer",
           }}
           gap={2}
         >
-          <HeaderData icon={<NotificationsNoneIcon />} text={"Notifications"} />
-          <HeaderData icon={<StarBorderIcon />} text={"Star"} nums={"175K"} />
-          <HeaderData icon={<ForkLeftIcon />} text={"Fork"} nums={"35.3K"} />
+          <HeaderData
+            icon={<NotificationsNoneIcon sx={{ fontSize: "20px" }} />}
+            text={"Notifications"}
+          />
+          <HeaderData
+            icon={<StarBorderIcon sx={{ fontSize: "20px" }} />}
+            text={"Star"}
+            nums={"175K"}
+          />
+          <HeaderData
+            icon={<ForkLeftIcon sx={{ fontSize: "20px" }} />}
+            text={"Fork"}
+            nums={"35.3K"}
+          />
         </Box>
       </Stack>
-      <Stack direction="row" gap={3} sx={{ margin: "0px 0px 0px 20px" }}>
+      <Stack
+        direction="row"
+        gap={2}
+        sx={{
+          margin: "0px 0px 0px 20px",
+          overflow: "hidden",
+        }}
+      >
         {navs.map((nav) => {
           return (
             <NavItem
